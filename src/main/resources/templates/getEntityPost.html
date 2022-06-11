@@ -1,0 +1,13 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>get entities</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h1>Result</h1>
+<form action="#" th:action="@{/get-customer}" th:object="${ResponseGetEntityAttribute}" method="post">
+    <p th:text="'Customer: ' + ${ResponseGetEntityAttribute}" />
+</form>
+</body>
+</html>

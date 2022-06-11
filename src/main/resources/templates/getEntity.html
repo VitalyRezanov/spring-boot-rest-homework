@@ -1,0 +1,17 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Input id form</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h1>Input id</h1>
+<form action="#" th:action="@{/get-entity}" th:object="${getEntityAttribute}" method="post">
+    <p>ID: <input type="text" th:field="*{id}" /></p>
+
+    <p><input type="submit" value="Submit" />
+        <input type="reset" value="Reset" />
+        <a href="/add-customer">Add customer</a></p>
+</form>
+</body>
+</html>

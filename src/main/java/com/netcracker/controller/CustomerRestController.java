@@ -4,6 +4,7 @@ import com.netcracker.exception.ResourceNotFoundException;
 import com.netcracker.model.Customer;
 import com.netcracker.repository.CustomerRepository;
 import com.netcracker.response.DeleteResponse;
+import com.netcracker.service.CustomerService;
 import com.netcracker.service.EntityCrudService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +22,9 @@ public class CustomerRestController {
     @Autowired
     EntityCrudService<Customer> entityService;
 
+    @Autowired
+    CustomerService customerService;
+
     @GetMapping("/customers")
     public List<Customer> getAllCustomers() {
         return entityService.getAllEntities(repository);
@@ -32,7 +36,7 @@ public class CustomerRestController {
     }
 
     @PostMapping("/customers")
-    public Customer addCustomer(@RequestBody Customer customer) {
+    public ResponseEntity<Customer> addCustomer(@RequestBody Customer customer) {
         return entityService.addEntity(customer, repository);
     }
 
@@ -42,12 +46,21 @@ public class CustomerRestController {
     }
 
     @PatchMapping("/customers/{id}")
-    public Customer patchCustomer(@PathVariable(value = "id") Integer id) throws ResourceNotFoundException {
-        return entityService.patchEntity(id, repository);
+    public ResponseEntity<Customer> patchCustomer(@PathVariable(value = "id") Integer id, @RequestBody Customer customer) throws ResourceNotFoundException {
+        return entityService.patchEntity(id, repository, customer);
     }
 
     @PutMapping("/customers")
     public List<Customer> patchAllCustomers(@RequestBody List<Customer> customers) {
         return entityService.patchAllEntities(customers, repository);
+    }
+    @GetMapping("/customers/different-area")
+    public List<String> getDifferentArea() {
+        return customerService.retrieveDifferentArea(repository);
+    }
+
+    @GetMapping("/customers/name-discount")
+    public List<String> getNameDiscount(@RequestBody String s) {
+        return customerService.retrieveNameDiscount(repository, s);
     }
 }

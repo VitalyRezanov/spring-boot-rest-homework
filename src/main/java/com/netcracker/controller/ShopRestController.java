@@ -5,6 +5,7 @@ import com.netcracker.model.Shop;
 import com.netcracker.repository.ShopRepository;
 import com.netcracker.response.DeleteResponse;
 import com.netcracker.service.EntityCrudService;
+import com.netcracker.service.ShopService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +21,9 @@ public class ShopRestController {
     @Autowired
     EntityCrudService<Shop> entityService;
 
+    @Autowired
+    ShopService shopService;
+
     @GetMapping("/shops")
     public List<Shop> getAllShops() {
         return entityService.getAllEntities(repository);
@@ -31,7 +35,7 @@ public class ShopRestController {
     }
 
     @PostMapping("/shops")
-    public Shop addShop(@RequestBody Shop shop) {
+    public ResponseEntity<Shop> addShop(@RequestBody Shop shop) {
         return entityService.addEntity(shop, repository);
     }
 
@@ -41,12 +45,16 @@ public class ShopRestController {
     }
 
     @PatchMapping("/shops/{id}")
-    public Shop patchShop(@PathVariable(value = "id") Integer id) throws ResourceNotFoundException {
-        return entityService.patchEntity(id, repository);
+    public ResponseEntity<Shop> patchShop(@PathVariable(value = "id") Integer id, @RequestBody Shop shop) throws ResourceNotFoundException {
+        return entityService.patchEntity(id, repository, shop);
     }
 
     @PutMapping("/shops")
     public List<Shop> patchAllShops(@RequestBody List<Shop> shop) {
         return entityService.patchAllEntities(shop, repository);
+    }
+    @GetMapping("/shops/name")
+    public List<String> getNameDiscount(@RequestBody String s) {
+        return shopService.retrieveName(repository, s);
     }
 }

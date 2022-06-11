@@ -1,10 +1,12 @@
 package com.netcracker.controller;
 
 import com.netcracker.exception.ResourceNotFoundException;
+import com.netcracker.model.Customer;
 import com.netcracker.model.Order;
 import com.netcracker.repository.OrderRepository;
 import com.netcracker.response.DeleteResponse;
 import com.netcracker.service.EntityCrudService;
+import com.netcracker.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +22,9 @@ public class OrderRestController {
     @Autowired
     EntityCrudService<Order> entityService;
 
+    @Autowired
+    OrderService orderService;
+
     @GetMapping("/orders")
     public List<Order> getAllOrders() {
         return entityService.getAllEntities(repository);
@@ -31,7 +36,7 @@ public class OrderRestController {
     }
 
     @PostMapping("/orders")
-    public Order addOrder(@RequestBody Order order) {
+    public ResponseEntity<Order> addOrder(@RequestBody Order order) {
         return entityService.addEntity(order, repository);
     }
 
@@ -41,12 +46,16 @@ public class OrderRestController {
     }
 
     @PatchMapping("/orders/{id}")
-    public Order patchOrder(@PathVariable(value = "id") Integer id) throws ResourceNotFoundException {
-        return entityService.patchEntity(id, repository);
+    public ResponseEntity<Order> patchOrder(@PathVariable(value = "id") Integer id, @RequestBody Order order) throws ResourceNotFoundException {
+        return entityService.patchEntity(id, repository, order);
     }
 
     @PutMapping("/orders")
     public List<Order> patchAllOrders(@RequestBody List<Order> order) {
         return entityService.patchAllEntities(order, repository);
+    }
+    @GetMapping("/orders/different-month")
+    public List<String> getDifferentArea() {
+        return orderService.retrieveDifferentMonth(repository);
     }
 }

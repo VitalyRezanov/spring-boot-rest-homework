@@ -4,6 +4,7 @@ import com.netcracker.exception.ResourceNotFoundException;
 import com.netcracker.model.Book;
 import com.netcracker.repository.BookRepository;
 import com.netcracker.response.DeleteResponse;
+import com.netcracker.service.BookService;
 import com.netcracker.service.EntityCrudService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +22,9 @@ public class BookRestController {
     @Autowired
     EntityCrudService<Book> entityService;
 
+    @Autowired
+    BookService bookService;
+
     @GetMapping("/books")
     public List<Book> getAllBook() {
         return entityService.getAllEntities(repository);
@@ -32,7 +36,7 @@ public class BookRestController {
     }
 
     @PostMapping("/books")
-    public Book addBook(@RequestBody Book book) {
+    public ResponseEntity<Book> addBook(@RequestBody Book book) {
         return entityService.addEntity(book, repository);
     }
 
@@ -42,12 +46,22 @@ public class BookRestController {
     }
 
     @PatchMapping("/books/{id}")
-    public Book pathBook(@PathVariable(value = "id") Integer id) throws ResourceNotFoundException {
-        return entityService.patchEntity(id, repository);
+    public ResponseEntity<Book> pathBook(@PathVariable(value = "id") Integer id, @RequestBody Book book) throws ResourceNotFoundException {
+        return entityService.patchEntity(id, repository, book);
     }
 
     @PutMapping("/books")
     public List<Book> pathAll(@RequestBody List<Book> book) {
         return entityService.patchAllEntities(book, repository);
+    }
+
+    @GetMapping("/books/different-book")
+    public List<String> getDifferentBook() {
+        return bookService.retrieveDifferentBook(repository);
+    }
+
+    @GetMapping("/books/by-word")
+    public List<String> getBookByWord(@RequestBody String word) {
+        return bookService.retrieveBookByWord(repository, word);
     }
 }

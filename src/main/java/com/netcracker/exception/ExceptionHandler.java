@@ -16,7 +16,7 @@ public class ExceptionHandler extends ResponseEntityExceptionHandler {
     public final ResponseEntity<ErrorResponse> handleResourceNotFoundException(ResourceNotFoundException ex) {
         List<String> details = new ArrayList<>();
         details.add(ex.getLocalizedMessage());
-        return new ResponseEntity<ErrorResponse>(new ErrorResponse("Incorrect request", details), HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(new ErrorResponse("Incorrect request", details), HttpStatus.NOT_FOUND);
     }
 
 

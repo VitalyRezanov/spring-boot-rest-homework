@@ -20,4 +20,13 @@ public class Customer {
     @Column(name = "discount", nullable = false)
     private double discount;
 
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", area='" + area + '\'' +
+                ", discount=" + discount +
+                '}';
+    }
 }

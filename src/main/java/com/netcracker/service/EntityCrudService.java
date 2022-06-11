@@ -21,8 +21,9 @@ public class EntityCrudService<T> {
         return  ResponseEntity.ok(entity);
     }
 
-    public T addEntity(T entity, JpaRepository<T,Integer> repository) {
-        return repository.save(entity);
+    public ResponseEntity<T> addEntity(T entity, JpaRepository<T,Integer> repository) {
+        //return repository.save(entity);
+        return ResponseEntity.ok(repository.save(entity));
     }
 
     public ResponseEntity<DeleteResponse> deleteEntity(Integer id, JpaRepository<T,Integer> repository) throws ResourceNotFoundException {
@@ -32,14 +33,15 @@ public class EntityCrudService<T> {
         return ResponseEntity.ok(new DeleteResponse("Entity with id: " + id + " deleted"));
     }
 
-    public T patchEntity(Integer id, JpaRepository<T,Integer> repository) throws ResourceNotFoundException {
-        T entity = repository.findById(id).orElseThrow(()->
+    public ResponseEntity<T> patchEntity(Integer id, JpaRepository<T,Integer> repository, T newEntity) throws ResourceNotFoundException {
+        repository.findById(id).orElseThrow(()->
                 new ResourceNotFoundException("Entity not found with id: " + id));
-        return repository.save(entity);
+        //return repository.save(newEntity);
+        return ResponseEntity.ok(repository.save(newEntity));
     }
 
     public List<T> patchAllEntities(List<T> entities, JpaRepository<T,Integer> repository ) {
         repository.deleteAll();
-        return repository.saveAllAndFlush(entities);
+        return repository.saveAll(entities);
     }
 }
