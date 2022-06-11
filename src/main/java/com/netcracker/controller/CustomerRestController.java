@@ -17,13 +17,13 @@ import java.util.List;
 public class CustomerRestController {
 
     @Autowired
-    CustomerRepository repository;
+    private CustomerRepository repository;
 
     @Autowired
-    EntityCrudService<Customer> entityService;
+    private EntityCrudService<Customer> entityService;
 
     @Autowired
-    CustomerService customerService;
+    private CustomerService customerService;
 
     @GetMapping("/customers")
     public List<Customer> getAllCustomers() {
@@ -60,7 +60,7 @@ public class CustomerRestController {
     }
 
     @GetMapping("/customers/name-discount")
-    public List<String> getNameDiscount(@RequestBody String s) {
-        return customerService.retrieveNameDiscount(repository, s);
+    public List<String> getNameDiscount(@RequestParam String area ) {
+        return customerService.retrieveNameDiscount(repository, area);
     }
 }

@@ -18,4 +18,14 @@ public class Shop {
     private String area;
     @Column(name = "commission")
     private double commission;
+
+    @Override
+    public String toString() {
+        return "Shop{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", area='" + area + '\'' +
+                ", commission=" + commission +
+                '}';
+    }
 }

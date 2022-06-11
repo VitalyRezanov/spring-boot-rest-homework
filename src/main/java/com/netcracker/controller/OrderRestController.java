@@ -17,13 +17,13 @@ import java.util.List;
 @RequestMapping("/rest")
 public class OrderRestController {
     @Autowired
-    OrderRepository repository;
+    private OrderRepository repository;
 
     @Autowired
-    EntityCrudService<Order> entityService;
+    private EntityCrudService<Order> entityService;
 
     @Autowired
-    OrderService orderService;
+    private OrderService orderService;
 
     @GetMapping("/orders")
     public List<Order> getAllOrders() {

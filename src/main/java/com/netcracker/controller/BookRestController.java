@@ -17,13 +17,13 @@ import java.util.List;
 public class BookRestController {
 
     @Autowired
-    BookRepository repository;
+    private BookRepository repository;
 
     @Autowired
-    EntityCrudService<Book> entityService;
+    private EntityCrudService<Book> entityService;
 
     @Autowired
-    BookService bookService;
+    private BookService bookService;
 
     @GetMapping("/books")
     public List<Book> getAllBook() {
@@ -61,7 +61,7 @@ public class BookRestController {
     }
 
     @GetMapping("/books/by-word")
-    public List<String> getBookByWord(@RequestBody String word) {
+    public List<String> getBookByWord(@RequestParam String word) {
         return bookService.retrieveBookByWord(repository, word);
     }
 }

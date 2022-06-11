@@ -16,13 +16,13 @@ import java.util.List;
 @RequestMapping("/rest")
 public class ShopRestController {
     @Autowired
-    ShopRepository repository;
+    private ShopRepository repository;
 
     @Autowired
-    EntityCrudService<Shop> entityService;
+    private EntityCrudService<Shop> entityService;
 
     @Autowired
-    ShopService shopService;
+    private ShopService shopService;
 
     @GetMapping("/shops")
     public List<Shop> getAllShops() {
@@ -54,7 +54,7 @@ public class ShopRestController {
         return entityService.patchAllEntities(shop, repository);
     }
     @GetMapping("/shops/name")
-    public List<String> getNameDiscount(@RequestBody String s) {
+    public List<String> getNameDiscount(@RequestParam String s) {
         return shopService.retrieveName(repository, s);
     }
 }

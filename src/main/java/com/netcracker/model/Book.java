@@ -20,4 +20,15 @@ public class Book {
     private String storage;
     @Column(name = "quantity")
     private int quantity;
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", storage='" + storage + '\'' +
+                ", quantity=" + quantity +
+                '}';
+    }
 }

@@ -25,4 +25,17 @@ public class Order {
     private int id_book;
     @Column(name = "id_customer")
     private int id_customer;
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", date='" + date + '\'' +
+                ", quantity=" + quantity +
+                ", sum=" + sum +
+                ", id_shop=" + id_shop +
+                ", id_book=" + id_book +
+                ", id_customer=" + id_customer +
+                '}';
+    }
 }
