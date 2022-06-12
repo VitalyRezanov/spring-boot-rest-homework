@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 
 @RestController
@@ -61,7 +62,7 @@ public class BookRestController {
     }
 
     @GetMapping("/books/by-word")
-    public List<String> getBookByWord(@RequestParam String word) {
-        return bookService.retrieveBookByWord(repository, word);
+    public List<String> getBookByWord(@RequestParam String word, @RequestParam Integer cost) {
+        return bookService.retrieveBookByWord(repository, word, cost);
     }
 }

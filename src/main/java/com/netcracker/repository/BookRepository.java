@@ -9,9 +9,10 @@ import java.util.List;
 
 public interface BookRepository extends JpaRepository<Book, Integer> {
 
-    @Query(value = "select distinct name,price from book", nativeQuery = true)
+    @Query(value = "select distinct b_name,price from book", nativeQuery = true)
     List<String> retrieveDifferentBook();
 
-    @Query(value = "select name, price from book b where b.name like word order by name ", nativeQuery = true)
-    List<String> retrieveBookByWord(@Param("word") String word);
+    @Query(value = "select b_name, price from book b where upper(b.b_name) " +
+            "like upper(:word) or b.price >:cost order by b_name desc,price desc ", nativeQuery = true)
+    List<String> retrieveBookByWord(@Param("word") String word, @Param("cost") Integer cost);
 }

@@ -22,7 +22,6 @@ public class EntityCrudService<T> {
     }
 
     public ResponseEntity<T> addEntity(T entity, JpaRepository<T,Integer> repository) {
-        //return repository.save(entity);
         return ResponseEntity.ok(repository.save(entity));
     }
 
@@ -36,7 +35,6 @@ public class EntityCrudService<T> {
     public ResponseEntity<T> patchEntity(Integer id, JpaRepository<T,Integer> repository, T newEntity) throws ResourceNotFoundException {
         repository.findById(id).orElseThrow(()->
                 new ResourceNotFoundException("Entity not found with id: " + id));
-        //return repository.save(newEntity);
         return ResponseEntity.ok(repository.save(newEntity));
     }
 

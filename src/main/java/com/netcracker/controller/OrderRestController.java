@@ -7,7 +7,11 @@ import com.netcracker.repository.OrderRepository;
 import com.netcracker.response.DeleteResponse;
 import com.netcracker.service.EntityCrudService;
 import com.netcracker.service.OrderService;
+import io.swagger.v3.oas.annotations.OpenAPI30;
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Description;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,6 +28,7 @@ public class OrderRestController {
 
     @Autowired
     private OrderService orderService;
+
 
     @GetMapping("/orders")
     public List<Order> getAllOrders() {
@@ -57,5 +62,15 @@ public class OrderRestController {
     @GetMapping("/orders/different-month")
     public List<String> getDifferentArea() {
         return orderService.retrieveDifferentMonth(repository);
+    }
+
+    @GetMapping("/orders/get-name-customer-shop")
+    public List<String> retrieveNameShopAndCustomerFromOrder() {
+        return orderService.retrieveNameShopAndCustomerFromOrder(repository);
+    }
+
+    @GetMapping("/orders/get-name-book-customer")
+    public List<String> retrieveBookAndCustomerFromOrder() {
+        return orderService.retrieveBookAndCustomerFromOrder(repository);
     }
 }

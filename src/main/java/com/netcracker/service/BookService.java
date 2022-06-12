@@ -10,7 +10,7 @@ public class BookService {
     public List<String> retrieveDifferentBook(BookRepository repository){
         return repository.retrieveDifferentBook();
     }
-    public List<String> retrieveBookByWord(BookRepository repository, String word) {
-        return repository.retrieveBookByWord(word);
+    public List<String> retrieveBookByWord(BookRepository repository, String word, Integer cost) {
+        return repository.retrieveBookByWord("%" + word + "%",cost);
     }
 }

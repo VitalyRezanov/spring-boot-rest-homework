@@ -54,7 +54,7 @@ public class ShopRestController {
         return entityService.patchAllEntities(shop, repository);
     }
     @GetMapping("/shops/name")
-    public List<String> getNameDiscount(@RequestParam String s) {
-        return shopService.retrieveName(repository, s);
+    public List<String> getNameDiscount(@RequestParam String area) {
+        return shopService.retrieveName(repository, area);
     }
 }

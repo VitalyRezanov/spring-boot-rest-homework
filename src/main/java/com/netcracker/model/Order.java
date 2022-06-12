@@ -3,9 +3,10 @@ package com.netcracker.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.sql.Date;
 
 @Entity
-@Table(name = "order")
+@Table(name = "orders")
 @Data
 public class Order {
 
@@ -14,7 +15,7 @@ public class Order {
     @Column(name = "id_order")
     private int id;
     @Column(name = "date")
-    private String date;
+    private Date date;
     @Column(name = "quantity")
     private int quantity;
     @Column(name = "sum")

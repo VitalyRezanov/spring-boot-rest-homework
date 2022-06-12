@@ -10,4 +10,10 @@ public class OrderService {
     public List<String> retrieveDifferentMonth(OrderRepository repository){
         return repository.retrieveDifferentMonth();
     }
+    public List<String> retrieveNameShopAndCustomerFromOrder(OrderRepository repository){
+        return repository.retrieveNameShopAndCustomerFromOrder();
+    }
+    public List<String> retrieveBookAndCustomerFromOrder(OrderRepository repository) {
+        return repository.retrieveBookAndCustomerFromOrder();
+    }
 }

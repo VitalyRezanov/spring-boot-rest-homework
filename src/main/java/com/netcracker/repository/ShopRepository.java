@@ -8,6 +8,6 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface ShopRepository extends JpaRepository<Shop, Integer> {
-    @Query(value = "select name from shop s where s.area = :area", nativeQuery = true)
+    @Query(value = "select shop_name from shop s where s.shop_area = :area", nativeQuery = true)
     List<String> retrieveName(@Param("area") String area);
 }
