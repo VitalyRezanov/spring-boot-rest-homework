@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/rest")
-public class BookRestController {
+public class BookController {
 
     @Autowired
     private BookRepository repository;

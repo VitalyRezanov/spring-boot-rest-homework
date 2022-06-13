@@ -14,7 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/rest")
-public class CustomerRestController {
+public class CustomerController {
 
     @Autowired
     private CustomerRepository repository;
