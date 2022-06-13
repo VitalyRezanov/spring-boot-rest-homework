@@ -13,4 +13,7 @@ public class BookService {
     public List<String> retrieveBookByWord(BookRepository repository, String word, Integer cost) {
         return repository.retrieveBookByWord("%" + word + "%",cost);
     }
+    public List<String> retrieveBooksByQuantity(BookRepository repository, Integer quantity) {
+        return repository.retrieveBooksByQuantity(quantity);
+    }
 }

@@ -57,4 +57,9 @@ public class ShopRestController {
     public List<String> getNameDiscount(@RequestParam String area) {
         return shopService.retrieveName(repository, area);
     }
+    @GetMapping("/shops/get-shops-by-discount-not-area")
+    public List<String> retrieveShopByDiscountCustomer(@RequestParam String notArea, @RequestParam Integer discount1,
+                                                             @RequestParam Integer discount2) {
+        return shopService.retrieveShopByDiscountCustomer(repository,notArea, discount1,discount2);
+    }
 }

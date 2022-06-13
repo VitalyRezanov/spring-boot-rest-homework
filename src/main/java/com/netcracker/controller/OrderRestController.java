@@ -1,20 +1,16 @@
 package com.netcracker.controller;
 
 import com.netcracker.exception.ResourceNotFoundException;
-import com.netcracker.model.Customer;
 import com.netcracker.model.Order;
 import com.netcracker.repository.OrderRepository;
 import com.netcracker.response.DeleteResponse;
 import com.netcracker.service.EntityCrudService;
 import com.netcracker.service.OrderService;
-import io.swagger.v3.oas.annotations.OpenAPI30;
-import io.swagger.v3.oas.annotations.OpenAPIDefinition;
-import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Description;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Date;
 import java.util.List;
 
 @RestController
@@ -72,5 +68,15 @@ public class OrderRestController {
     @GetMapping("/orders/get-name-book-customer")
     public List<String> retrieveBookAndCustomerFromOrder() {
         return orderService.retrieveBookAndCustomerFromOrder(repository);
+    }
+
+    @GetMapping("/orders/get-order-sum")
+    public List<String> retrieveOrderBySum(@RequestParam Double sum) {
+        return orderService.retrieveOrderLessSum(repository, sum);
+    }
+
+    @GetMapping("/orders/get-order-by-area-shop-customer")
+    public List<String> retrieveOrderByAreaShopAndCustomer(@RequestParam Integer id,@RequestParam Date date) {
+        return orderService.retrieveOrderByAreaShopAndCustomer(repository, id,date);
     }
 }

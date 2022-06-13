@@ -18,7 +18,7 @@ public class Order {
     private Date date;
     @Column(name = "quantity")
     private int quantity;
-    @Column(name = "sum")
+    @Column(name = "sum_order")
     private double sum;
     @Column(name = "id_shop")
     private int id_shop;
